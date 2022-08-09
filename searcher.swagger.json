@@ -1,0 +1,618 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "searcher.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "Searcher"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/judgements/_index": {
+      "post": {
+        "operationId": "Searcher_Index",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/searcherIndexReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/searcherIndexRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Searcher"
+        ]
+      }
+    },
+    "/v1/judgements/_search": {
+      "get": {
+        "operationId": "Searcher_Search",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/searcherSearchReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "court",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pname",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "paname",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pafirm",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "dname",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "daname",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "dafirm",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "judge",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "juror",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "clerk",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "knn",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "debug",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "Searcher"
+        ]
+      }
+    },
+    "/v1/judgements/_update/{uuid}": {
+      "put": {
+        "operationId": "Searcher_Update",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/searcherIndexReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "court": {
+                  "type": "string"
+                },
+                "plaintiffs": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/searcherLitigant"
+                  }
+                },
+                "attorneysOfPlaintiff": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/searcherAttorney"
+                  }
+                },
+                "defendants": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/searcherLitigant"
+                  }
+                },
+                "attorneysOfDefendant": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/searcherAttorney"
+                  }
+                },
+                "judges": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "jurors": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "clerks": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "title": {
+                  "type": "string"
+                },
+                "summary": {
+                  "type": "string"
+                },
+                "content": {
+                  "type": "string"
+                },
+                "verdictno": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "time": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "contentEmbedding": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "format": "float"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "Searcher"
+        ]
+      }
+    },
+    "/v1/judgements/{uuid}": {
+      "delete": {
+        "operationId": "Searcher_Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/searcherDeleteReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Searcher"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "searcherAttorney": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "place": {
+          "$ref": "#/definitions/searcherPlace"
+        },
+        "lawFirm": {
+          "type": "string"
+        }
+      }
+    },
+    "searcherDeleteReply": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string"
+        }
+      }
+    },
+    "searcherGender": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "MALE",
+        "FEMALE"
+      ],
+      "default": "UNKNOWN"
+    },
+    "searcherIndexReply": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string"
+        }
+      }
+    },
+    "searcherIndexRequest": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string"
+        },
+        "court": {
+          "type": "string"
+        },
+        "plaintiffs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/searcherLitigant"
+          }
+        },
+        "attorneysOfPlaintiff": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/searcherAttorney"
+          }
+        },
+        "defendants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/searcherLitigant"
+          }
+        },
+        "attorneysOfDefendant": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/searcherAttorney"
+          }
+        },
+        "judges": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "jurors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "clerks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "title": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "verdictno": {
+          "type": "string"
+        },
+        "type": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "contentEmbedding": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "float"
+          }
+        }
+      }
+    },
+    "searcherJudgement": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string"
+        },
+        "court": {
+          "type": "string"
+        },
+        "plaintiffs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/searcherLitigant"
+          }
+        },
+        "attorneysOfPlaintiff": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/searcherAttorney"
+          }
+        },
+        "defendants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/searcherLitigant"
+          }
+        },
+        "attorneysOfDefendant": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/searcherAttorney"
+          }
+        },
+        "judges": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "jurors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "clerks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "title": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "verdictno": {
+          "type": "string"
+        },
+        "type": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "contentEmbedding": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "float"
+          }
+        }
+      }
+    },
+    "searcherLitigant": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "idNo": {
+          "type": "string"
+        },
+        "gender": {
+          "$ref": "#/definitions/searcherGender"
+        },
+        "birthday": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ethnicity": {
+          "type": "string"
+        },
+        "education": {
+          "type": "string"
+        },
+        "profession": {
+          "type": "string"
+        },
+        "birthPlace": {
+          "$ref": "#/definitions/searcherPlace"
+        },
+        "livePlace": {
+          "$ref": "#/definitions/searcherPlace"
+        }
+      }
+    },
+    "searcherPlace": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "province": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "county": {
+          "type": "string"
+        }
+      }
+    },
+    "searcherSearchReply": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "string",
+          "format": "int64"
+        },
+        "from": {
+          "type": "string",
+          "format": "int64"
+        },
+        "size": {
+          "type": "string",
+          "format": "int64"
+        },
+        "judgements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/searcherJudgement"
+          }
+        }
+      }
+    }
+  }
+}
