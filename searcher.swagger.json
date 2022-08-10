@@ -49,7 +49,7 @@
       }
     },
     "/v1/judgements/_search": {
-      "get": {
+      "post": {
         "operationId": "Searcher_Search",
         "responses": {
           "200": {
@@ -67,103 +67,12 @@
         },
         "parameters": [
           {
-            "name": "query",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "court",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "pname",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "paname",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "pafirm",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "dname",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "daname",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "dafirm",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "judge",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "juror",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "clerk",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "type",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "knn",
-            "in": "query",
-            "required": false,
-            "type": "boolean"
-          },
-          {
-            "name": "from",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "size",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "debug",
-            "in": "query",
-            "required": false,
-            "type": "boolean"
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/searcherSearchRequest"
+            }
           }
         ],
         "tags": [
@@ -611,6 +520,68 @@
           "items": {
             "$ref": "#/definitions/searcherJudgement"
           }
+        }
+      }
+    },
+    "searcherSearchRequest": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string"
+        },
+        "court": {
+          "type": "string"
+        },
+        "pname": {
+          "type": "string"
+        },
+        "paname": {
+          "type": "string"
+        },
+        "pafirm": {
+          "type": "string"
+        },
+        "dname": {
+          "type": "string"
+        },
+        "daname": {
+          "type": "string"
+        },
+        "dafirm": {
+          "type": "string"
+        },
+        "judge": {
+          "type": "string"
+        },
+        "juror": {
+          "type": "string"
+        },
+        "clerk": {
+          "type": "string"
+        },
+        "type": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "uuids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "knn": {
+          "type": "boolean"
+        },
+        "from": {
+          "type": "string",
+          "format": "int64"
+        },
+        "size": {
+          "type": "string",
+          "format": "int64"
+        },
+        "debug": {
+          "type": "boolean"
         }
       }
     }
