@@ -16,6 +16,38 @@
     "application/json"
   ],
   "paths": {
+    "/v1/judgements/_extract": {
+      "post": {
+        "operationId": "Searcher_Extract",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/searcherExtractReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/searcherExtractRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Searcher"
+        ]
+      }
+    },
     "/v1/judgements/_index": {
       "post": {
         "operationId": "Searcher_Index",
@@ -233,6 +265,14 @@
       },
       "additionalProperties": {}
     },
+    "protobufNullValue": {
+      "type": "string",
+      "enum": [
+        "NULL_VALUE"
+      ],
+      "default": "NULL_VALUE",
+      "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\n The JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value."
+    },
     "rpcStatus": {
       "type": "object",
       "properties": {
@@ -269,6 +309,25 @@
       "type": "object",
       "properties": {
         "uuid": {
+          "type": "string"
+        }
+      }
+    },
+    "searcherExtractReply": {
+      "type": "object",
+      "properties": {
+        "doc": {
+          "type": "object"
+        }
+      }
+    },
+    "searcherExtractRequest": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "content": {
           "type": "string"
         }
       }
