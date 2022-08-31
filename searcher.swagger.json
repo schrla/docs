@@ -341,6 +341,23 @@
       ],
       "default": "UNKNOWN"
     },
+    "searcherHighLight": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "content": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "searcherIndexReply": {
       "type": "object",
       "properties": {
@@ -559,6 +576,21 @@
         }
       }
     },
+    "searcherSearchHit": {
+      "type": "object",
+      "properties": {
+        "score": {
+          "type": "number",
+          "format": "float"
+        },
+        "judgement": {
+          "$ref": "#/definitions/searcherJudgement"
+        },
+        "highlight": {
+          "$ref": "#/definitions/searcherHighLight"
+        }
+      }
+    },
     "searcherSearchReply": {
       "type": "object",
       "properties": {
@@ -574,10 +606,10 @@
           "type": "string",
           "format": "int64"
         },
-        "judgements": {
+        "hits": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/searcherJudgement"
+            "$ref": "#/definitions/searcherSearchHit"
           }
         }
       }
