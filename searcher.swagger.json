@@ -146,6 +146,9 @@
                 "court": {
                   "type": "string"
                 },
+                "round": {
+                  "type": "string"
+                },
                 "plaintiffs": {
                   "type": "array",
                   "items": {
@@ -197,6 +200,27 @@
                 "content": {
                   "type": "string"
                 },
+                "cause": {
+                  "type": "string"
+                },
+                "complaint": {
+                  "type": "string"
+                },
+                "defense": {
+                  "type": "string"
+                },
+                "contention": {
+                  "type": "string"
+                },
+                "fact": {
+                  "type": "string"
+                },
+                "opinion": {
+                  "type": "string"
+                },
+                "decision": {
+                  "type": "string"
+                },
                 "verdictno": {
                   "type": "string"
                 },
@@ -204,11 +228,70 @@
                   "type": "integer",
                   "format": "int32"
                 },
+                "caseType": {
+                  "type": "string"
+                },
                 "time": {
                   "type": "string",
                   "format": "date-time"
                 },
+                "trialDate": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "pubDate": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "tags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
                 "contentEmbedding": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "format": "float"
+                  }
+                },
+                "complaintEmbedding": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "format": "float"
+                  }
+                },
+                "defenseEmbedding": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "format": "float"
+                  }
+                },
+                "contentionEmbedding": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "format": "float"
+                  }
+                },
+                "factEmbedding": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "format": "float"
+                  }
+                },
+                "opinionEmbedding": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "format": "float"
+                  }
+                },
+                "decisionEmbedding": {
                   "type": "array",
                   "items": {
                     "type": "number",
@@ -375,6 +458,9 @@
         "court": {
           "type": "string"
         },
+        "round": {
+          "type": "string"
+        },
         "plaintiffs": {
           "type": "array",
           "items": {
@@ -426,6 +512,27 @@
         "content": {
           "type": "string"
         },
+        "cause": {
+          "type": "string"
+        },
+        "complaint": {
+          "type": "string"
+        },
+        "defense": {
+          "type": "string"
+        },
+        "contention": {
+          "type": "string"
+        },
+        "fact": {
+          "type": "string"
+        },
+        "opinion": {
+          "type": "string"
+        },
+        "decision": {
+          "type": "string"
+        },
         "verdictno": {
           "type": "string"
         },
@@ -433,11 +540,70 @@
           "type": "integer",
           "format": "int32"
         },
+        "caseType": {
+          "type": "string"
+        },
         "time": {
           "type": "string",
           "format": "date-time"
         },
+        "trialDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "pubDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "contentEmbedding": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "float"
+          }
+        },
+        "complaintEmbedding": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "float"
+          }
+        },
+        "defenseEmbedding": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "float"
+          }
+        },
+        "contentionEmbedding": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "float"
+          }
+        },
+        "factEmbedding": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "float"
+          }
+        },
+        "opinionEmbedding": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "float"
+          }
+        },
+        "decisionEmbedding": {
           "type": "array",
           "items": {
             "type": "number",
@@ -455,6 +621,9 @@
         "court": {
           "type": "string"
         },
+        "round": {
+          "type": "string"
+        },
         "plaintiffs": {
           "type": "array",
           "items": {
@@ -506,6 +675,27 @@
         "content": {
           "type": "string"
         },
+        "cause": {
+          "type": "string"
+        },
+        "complaint": {
+          "type": "string"
+        },
+        "defense": {
+          "type": "string"
+        },
+        "contention": {
+          "type": "string"
+        },
+        "fact": {
+          "type": "string"
+        },
+        "opinion": {
+          "type": "string"
+        },
+        "decision": {
+          "type": "string"
+        },
         "verdictno": {
           "type": "string"
         },
@@ -513,11 +703,70 @@
           "type": "integer",
           "format": "int32"
         },
+        "caseType": {
+          "type": "string"
+        },
         "time": {
           "type": "string",
           "format": "date-time"
         },
+        "trialDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "pubDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "contentEmbedding": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "float"
+          }
+        },
+        "complaintEmbedding": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "float"
+          }
+        },
+        "defenseEmbedding": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "float"
+          }
+        },
+        "contentionEmbedding": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "float"
+          }
+        },
+        "factEmbedding": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "float"
+          }
+        },
+        "opinionEmbedding": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "float"
+          }
+        },
+        "decisionEmbedding": {
           "type": "array",
           "items": {
             "type": "number",
@@ -611,6 +860,12 @@
           "items": {
             "$ref": "#/definitions/searcherSearchHit"
           }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
@@ -618,6 +873,13 @@
       "type": "object",
       "properties": {
         "query": {
+          "type": "string"
+        },
+        "queryType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "round": {
           "type": "string"
         },
         "court": {
@@ -653,6 +915,15 @@
         "type": {
           "type": "integer",
           "format": "int32"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "genTags": {
+          "type": "boolean"
         },
         "uuids": {
           "type": "array",
