@@ -925,14 +925,17 @@
         "genTags": {
           "type": "boolean"
         },
+        "knn": {
+          "type": "boolean"
+        },
         "uuids": {
           "type": "array",
           "items": {
             "type": "string"
           }
         },
-        "knn": {
-          "type": "boolean"
+        "mode": {
+          "type": "string"
         },
         "from": {
           "type": "string",
