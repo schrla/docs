@@ -16,6 +16,118 @@
     "application/json"
   ],
   "paths": {
+    "/v1/jobs/_get/{jobId}": {
+      "get": {
+        "operationId": "Searcher_GetJob",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/searcherGetJobReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Searcher"
+        ]
+      }
+    },
+    "/v1/jobs/_parse": {
+      "post": {
+        "operationId": "Searcher_Parse",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/searcherParseReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/searcherParseRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Searcher"
+        ]
+      }
+    },
+    "/v1/jobs/_rec/{jobId}": {
+      "get": {
+        "operationId": "Searcher_Recommend",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/searcherRecommendReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "debug",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "Searcher"
+        ]
+      }
+    },
     "/v1/judgements/_extract": {
       "post": {
         "operationId": "Searcher_Extract",
@@ -415,6 +527,28 @@
         }
       }
     },
+    "searcherExtractResult": {
+      "type": "object",
+      "properties": {
+        "judgement": {
+          "$ref": "#/definitions/searcherJudgement"
+        }
+      }
+    },
+    "searcherFileOcrResult": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "type": "string"
+        },
+        "localFile": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        }
+      }
+    },
     "searcherGender": {
       "type": "string",
       "enum": [
@@ -423,6 +557,39 @@
         "FEMALE"
       ],
       "default": "UNKNOWN"
+    },
+    "searcherGetJobReply": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "parameters": {
+          "$ref": "#/definitions/searcherParseRequest"
+        },
+        "data": {
+          "$ref": "#/definitions/searcherJobData"
+        },
+        "error": {
+          "type": "string"
+        },
+        "errorCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "retryAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
     },
     "searcherHighLight": {
       "type": "object",
@@ -604,6 +771,27 @@
           }
         },
         "decisionEmbedding": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "float"
+          }
+        }
+      }
+    },
+    "searcherJobData": {
+      "type": "object",
+      "properties": {
+        "ocrResult": {
+          "$ref": "#/definitions/searcherOcrResult"
+        },
+        "extractResult": {
+          "$ref": "#/definitions/searcherExtractResult"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "contentEmbedding": {
           "type": "array",
           "items": {
             "type": "number",
@@ -808,6 +996,43 @@
         }
       }
     },
+    "searcherOcrResult": {
+      "type": "object",
+      "properties": {
+        "files": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/searcherFileOcrResult"
+          }
+        }
+      }
+    },
+    "searcherParseReply": {
+      "type": "object",
+      "properties": {
+        "jobId": {
+          "type": "string"
+        }
+      }
+    },
+    "searcherParseRequest": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "callback": {
+          "type": "string"
+        }
+      }
+    },
     "searcherPlace": {
       "type": "object",
       "properties": {
@@ -822,6 +1047,29 @@
         },
         "county": {
           "type": "string"
+        }
+      }
+    },
+    "searcherRecommendReply": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "string",
+          "format": "int64"
+        },
+        "from": {
+          "type": "string",
+          "format": "int64"
+        },
+        "size": {
+          "type": "string",
+          "format": "int64"
+        },
+        "hits": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/searcherSearchHit"
+          }
         }
       }
     },
