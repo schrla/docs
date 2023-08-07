@@ -16,7 +16,7 @@
     "application/json"
   ],
   "paths": {
-    "/v1/jobs/_get/{jobId}": {
+    "/v1/jobs/_get/{job_id}": {
       "get": {
         "operationId": "Searcher_GetJob",
         "responses": {
@@ -35,7 +35,7 @@
         },
         "parameters": [
           {
-            "name": "jobId",
+            "name": "job_id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -78,7 +78,7 @@
         ]
       }
     },
-    "/v1/jobs/_rec/{jobId}": {
+    "/v1/jobs/_rec/{job_id}": {
       "get": {
         "operationId": "Searcher_Recommend",
         "responses": {
@@ -97,10 +97,17 @@
         },
         "parameters": [
           {
-            "name": "jobId",
+            "name": "job_id",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "query_type",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
           },
           {
             "name": "from",
@@ -267,7 +274,7 @@
                     "$ref": "#/definitions/searcherLitigant"
                   }
                 },
-                "attorneysOfPlaintiff": {
+                "attorneys_of_plaintiff": {
                   "type": "array",
                   "items": {
                     "$ref": "#/definitions/searcherAttorney"
@@ -279,7 +286,7 @@
                     "$ref": "#/definitions/searcherLitigant"
                   }
                 },
-                "attorneysOfDefendant": {
+                "attorneys_of_defendant": {
                   "type": "array",
                   "items": {
                     "$ref": "#/definitions/searcherAttorney"
@@ -340,18 +347,18 @@
                   "type": "integer",
                   "format": "int32"
                 },
-                "caseType": {
+                "case_type": {
                   "type": "string"
                 },
                 "time": {
                   "type": "string",
                   "format": "date-time"
                 },
-                "trialDate": {
+                "trial_date": {
                   "type": "string",
                   "format": "date-time"
                 },
-                "pubDate": {
+                "pub_date": {
                   "type": "string",
                   "format": "date-time"
                 },
@@ -361,49 +368,49 @@
                     "type": "string"
                   }
                 },
-                "contentEmbedding": {
+                "content_embedding": {
                   "type": "array",
                   "items": {
                     "type": "number",
                     "format": "float"
                   }
                 },
-                "complaintEmbedding": {
+                "complaint_embedding": {
                   "type": "array",
                   "items": {
                     "type": "number",
                     "format": "float"
                   }
                 },
-                "defenseEmbedding": {
+                "defense_embedding": {
                   "type": "array",
                   "items": {
                     "type": "number",
                     "format": "float"
                   }
                 },
-                "contentionEmbedding": {
+                "contention_embedding": {
                   "type": "array",
                   "items": {
                     "type": "number",
                     "format": "float"
                   }
                 },
-                "factEmbedding": {
+                "fact_embedding": {
                   "type": "array",
                   "items": {
                     "type": "number",
                     "format": "float"
                   }
                 },
-                "opinionEmbedding": {
+                "opinion_embedding": {
                   "type": "array",
                   "items": {
                     "type": "number",
                     "format": "float"
                   }
                 },
-                "decisionEmbedding": {
+                "decision_embedding": {
                   "type": "array",
                   "items": {
                     "type": "number",
@@ -495,7 +502,7 @@
         "place": {
           "$ref": "#/definitions/searcherPlace"
         },
-        "lawFirm": {
+        "law_firm": {
           "type": "string"
         }
       }
@@ -541,7 +548,7 @@
         "file": {
           "type": "string"
         },
-        "localFile": {
+        "local_file": {
           "type": "string"
         },
         "content": {
@@ -574,18 +581,19 @@
         "data": {
           "$ref": "#/definitions/searcherJobData"
         },
-        "error": {
-          "type": "string"
-        },
-        "errorCount": {
+        "error_code": {
           "type": "integer",
           "format": "int32"
         },
-        "createdAt": {
+        "error_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "created_at": {
           "type": "string",
           "format": "date-time"
         },
-        "retryAt": {
+        "retry_at": {
           "type": "string",
           "format": "date-time"
         }
@@ -634,7 +642,7 @@
             "$ref": "#/definitions/searcherLitigant"
           }
         },
-        "attorneysOfPlaintiff": {
+        "attorneys_of_plaintiff": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/searcherAttorney"
@@ -646,7 +654,7 @@
             "$ref": "#/definitions/searcherLitigant"
           }
         },
-        "attorneysOfDefendant": {
+        "attorneys_of_defendant": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/searcherAttorney"
@@ -707,18 +715,18 @@
           "type": "integer",
           "format": "int32"
         },
-        "caseType": {
+        "case_type": {
           "type": "string"
         },
         "time": {
           "type": "string",
           "format": "date-time"
         },
-        "trialDate": {
+        "trial_date": {
           "type": "string",
           "format": "date-time"
         },
-        "pubDate": {
+        "pub_date": {
           "type": "string",
           "format": "date-time"
         },
@@ -728,49 +736,49 @@
             "type": "string"
           }
         },
-        "contentEmbedding": {
+        "content_embedding": {
           "type": "array",
           "items": {
             "type": "number",
             "format": "float"
           }
         },
-        "complaintEmbedding": {
+        "complaint_embedding": {
           "type": "array",
           "items": {
             "type": "number",
             "format": "float"
           }
         },
-        "defenseEmbedding": {
+        "defense_embedding": {
           "type": "array",
           "items": {
             "type": "number",
             "format": "float"
           }
         },
-        "contentionEmbedding": {
+        "contention_embedding": {
           "type": "array",
           "items": {
             "type": "number",
             "format": "float"
           }
         },
-        "factEmbedding": {
+        "fact_embedding": {
           "type": "array",
           "items": {
             "type": "number",
             "format": "float"
           }
         },
-        "opinionEmbedding": {
+        "opinion_embedding": {
           "type": "array",
           "items": {
             "type": "number",
             "format": "float"
           }
         },
-        "decisionEmbedding": {
+        "decision_embedding": {
           "type": "array",
           "items": {
             "type": "number",
@@ -782,16 +790,19 @@
     "searcherJobData": {
       "type": "object",
       "properties": {
-        "ocrResult": {
+        "pa_result": {
+          "$ref": "#/definitions/searcherPaResult"
+        },
+        "ocr_result": {
           "$ref": "#/definitions/searcherOcrResult"
         },
-        "extractResult": {
+        "extract_result": {
           "$ref": "#/definitions/searcherExtractResult"
         },
         "summary": {
           "type": "string"
         },
-        "contentEmbedding": {
+        "content_embedding": {
           "type": "array",
           "items": {
             "type": "number",
@@ -818,7 +829,7 @@
             "$ref": "#/definitions/searcherLitigant"
           }
         },
-        "attorneysOfPlaintiff": {
+        "attorneys_of_plaintiff": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/searcherAttorney"
@@ -830,7 +841,7 @@
             "$ref": "#/definitions/searcherLitigant"
           }
         },
-        "attorneysOfDefendant": {
+        "attorneys_of_defendant": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/searcherAttorney"
@@ -891,18 +902,18 @@
           "type": "integer",
           "format": "int32"
         },
-        "caseType": {
+        "case_type": {
           "type": "string"
         },
         "time": {
           "type": "string",
           "format": "date-time"
         },
-        "trialDate": {
+        "trial_date": {
           "type": "string",
           "format": "date-time"
         },
-        "pubDate": {
+        "pub_date": {
           "type": "string",
           "format": "date-time"
         },
@@ -912,49 +923,49 @@
             "type": "string"
           }
         },
-        "contentEmbedding": {
+        "content_embedding": {
           "type": "array",
           "items": {
             "type": "number",
             "format": "float"
           }
         },
-        "complaintEmbedding": {
+        "complaint_embedding": {
           "type": "array",
           "items": {
             "type": "number",
             "format": "float"
           }
         },
-        "defenseEmbedding": {
+        "defense_embedding": {
           "type": "array",
           "items": {
             "type": "number",
             "format": "float"
           }
         },
-        "contentionEmbedding": {
+        "contention_embedding": {
           "type": "array",
           "items": {
             "type": "number",
             "format": "float"
           }
         },
-        "factEmbedding": {
+        "fact_embedding": {
           "type": "array",
           "items": {
             "type": "number",
             "format": "float"
           }
         },
-        "opinionEmbedding": {
+        "opinion_embedding": {
           "type": "array",
           "items": {
             "type": "number",
             "format": "float"
           }
         },
-        "decisionEmbedding": {
+        "decision_embedding": {
           "type": "array",
           "items": {
             "type": "number",
@@ -969,7 +980,7 @@
         "name": {
           "type": "string"
         },
-        "idNo": {
+        "id_no": {
           "type": "string"
         },
         "gender": {
@@ -988,10 +999,10 @@
         "profession": {
           "type": "string"
         },
-        "birthPlace": {
+        "birth_place": {
           "$ref": "#/definitions/searcherPlace"
         },
-        "livePlace": {
+        "live_place": {
           "$ref": "#/definitions/searcherPlace"
         }
       }
@@ -1007,10 +1018,25 @@
         }
       }
     },
+    "searcherPaResult": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "searcherParseReply": {
       "type": "object",
       "properties": {
-        "jobId": {
+        "job_id": {
           "type": "string"
         }
       }
@@ -1123,7 +1149,7 @@
         "query": {
           "type": "string"
         },
-        "queryType": {
+        "query_type": {
           "type": "integer",
           "format": "int32"
         },
@@ -1170,10 +1196,10 @@
             "type": "string"
           }
         },
-        "genTags": {
-          "type": "boolean"
+        "cause": {
+          "type": "string"
         },
-        "knn": {
+        "gen_tags": {
           "type": "boolean"
         },
         "uuids": {
